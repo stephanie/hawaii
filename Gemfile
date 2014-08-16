@@ -4,6 +4,7 @@ gem 'rails', '4.0.5'
 
 # Database
 gem 'mysql2'
+gem 'factual-api', :require => 'factual'
 
 # Model
 gem 'mechanize'
@@ -25,3 +26,4 @@ gem 'capistrano', group: :development
 gem 'jquery-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'haml'
+gem 'rabl'
