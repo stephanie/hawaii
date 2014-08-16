@@ -8,7 +8,7 @@ class PlacesController < ApplicationController
         @rows = factual.table("places-us").filters("region" => "hi")
       }
       format.html {
-        @rows = factual.table("places-us").filters("region" => "hi").rows
+        @rows = factual.table("places-us").filters("region" => "hi").limit(50).rows
       }
     end
   end
