@@ -22,7 +22,6 @@ gem 'puma'
 gem 'capistrano', group: :development
 
 # UI
-gem 'less'
 gem 'jquery-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'haml'
