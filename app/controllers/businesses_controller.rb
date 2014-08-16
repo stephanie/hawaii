@@ -13,8 +13,19 @@ class BusinessesController < ApplicationController
     end
   end
 
-  def create 
+  def get_businesses 
+    @rows = factual.table("places-us").filters("region" => "hi").limit(50).rows
 
+
+    businesses.each do |business|
+      @business = Business.find_by(factual_id: business["factual_id"])
+      if @business
+        @business.update(business)
+      else
+        Business.create(business)
+      end
+      puts "SUCCESS: Saved business data!!!!!!!!"
+    end
   end
 
 end
