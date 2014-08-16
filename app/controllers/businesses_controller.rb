@@ -1,4 +1,4 @@
-class PlacesController < ApplicationController
+class BusinessesController < ApplicationController
 
   def index 
     factual = Factual.new Factual::KEY, Factual::SECRET
@@ -11,6 +11,10 @@ class PlacesController < ApplicationController
         @rows = factual.table("places-us").filters("region" => "hi").limit(50).rows
       }
     end
+  end
+
+  def create 
+
   end
 
 end
