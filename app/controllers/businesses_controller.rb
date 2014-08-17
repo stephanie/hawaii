@@ -8,9 +8,17 @@ class BusinessesController < ApplicationController
         @rows = factual.table("places-us").filters("region" => "hi")
       }
       format.html {
-        @rows = factual.table("places-us").filters("region" => "hi").limit(50).rows
+        @rows = factual.table("places-us").filters("region" => "hi").limit(50)
       }
     end
+  end
+
+  def yelp
+    factual = Factual.new Factual::KEY, Factual::SECRET
+
+    @rows = factual.table("crosswalk").filters("factual_id" => "3b9e2b46-4961-4a31-b90a-b5e0aed2a45e", "namespace" => "yelp").rows
+
+    @count = factual.facets("places-us").select("region").filters("region" => "HI").min_count(20).limit(5).columns
   end
 
   # def get_businesses 
@@ -57,7 +65,7 @@ class BusinessesController < ApplicationController
   private
 
   def business_params
-    params.require(:business).permit(:factual_id, :address, :address_extended, :locality, :postcode, :latitude, :longitude)
+    params.require(:business).permit(:name, :factual_id, :address, :address_extended, :locality, :postcode, :latitude, :longitude)
   end
 
 end

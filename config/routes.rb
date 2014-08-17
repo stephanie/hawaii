@@ -6,6 +6,8 @@ Hawaii::Application.routes.draw do
     end
   end
 
+  get 'yelp' => 'businesses#yelp', as: :yelp
+
   resources :businesses
 
 end
