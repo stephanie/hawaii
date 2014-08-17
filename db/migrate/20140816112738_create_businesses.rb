@@ -9,7 +9,8 @@ class CreateBusinesses < ActiveRecord::Migration
       t.integer :postcode
       t.float :latitude
       t.float :longitude
-
+      t.string :category_ids
+      
       t.timestamps
     end
   end

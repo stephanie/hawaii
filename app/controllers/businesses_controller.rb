@@ -8,7 +8,9 @@ class BusinessesController < ApplicationController
         @rows = factual.table("places-us").filters("region" => "hi")
       }
       format.html {
-        @rows = factual.table("places-us").filters("region" => "hi").limit(50)
+        # @rows = factual.table("places-us").filters("region" => "hi").rows
+        @rows = factual.table("places-us").filters("$and" => [{"category_ids" => {"$includes" => 342}}, "locality" => "honolulu", "region" => "hi"])
+        # @rows = factual.table("places-us").filters("$and" => [{"category_ids" => {"$includes" => 400}}, "region" => "hi"]).rows
       }
     end
   end
