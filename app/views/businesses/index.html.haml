@@ -12,7 +12,7 @@
     }),
     latlng = L.latLng(19.542915, -155.665857);
 
-  var map = L.map('map', { center: latlng, zoom: 9, layers: [tiles] });
+  var map = L.map('map', { center: latlng, zoom: 5, layers: [tiles] });
 
   var progress = document.getElementById('progress');
   var progressBar = document.getElementById('progress-bar');
@@ -48,7 +48,7 @@
           marker.bindPopup(title);
           markerList.push(marker);
         } else {
-          console.log(business.full_address);
+          //console.log(business.full_address);
         }
       });
       markers.addLayers(markerList);
