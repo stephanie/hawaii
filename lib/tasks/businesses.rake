@@ -12,14 +12,14 @@ namespace :hawaii do
           count = factual.facets("places-us").select("region").filters("$and" => [{"category_ids" => {"$eq" => category_id}}, "locality" => "#{locality}"]).columns
           
           if count["region"].blank? == false
-            count = (count["region"]["hi"] / 20).ceil
-            if count > 24 
-              count = 24
+            count = (count["region"]["hi"] / 50).ceil
+            if count > 9 
+              count = 9
             end
 
             (0..count).each do |i|
 
-              rows = factual.table("places-us").filters("$and" => [{"category_ids" => {"$eq" => category_id}}, "locality" => "#{locality}", "region" => "hi"]).offset(i*20)
+              rows = factual.table("places-us").filters("$and" => [{"category_ids" => {"$eq" => category_id}}, "locality" => "#{locality}", "region" => "hi"]).offset(i*20).limit(50)
 
               business_data = []
               rows.each do |row|
