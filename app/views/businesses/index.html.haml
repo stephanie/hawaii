@@ -1,34 +1,51 @@
-%ul 
-  - @rows.each do |row|
-    %li 
-      = row["name"]
-      %ul
-        %li
-          Factual id: 
-          = row["factual_id"] 
-        %li
-          Address: 
-          = row["address"] 
-        %li
-          Extended address: 
-          = row["address_extended"] 
-        %li
-          Town/City: 
-          = row["locality"] 
-        %li
-          Postcode: 
-          = row["postcode"]
-        %li
-          Category: 
-          = row["category_labels"] 
-        %li
-          Latitude: 
-          = row["latitude"]
-        %li
-          Longitude: 
-          = row["longitude"] 
-        %li
-          Category ID:
-          = row["category_ids"]
+%div#progress
+  %div#progress-bar
 
-/ = @rows
+%div#map
+
+:javascript
+  //adapted from marker-clustering-realworld 50000 example
+  var tiles = L.tileLayer('http://{s}.tiles.mapbox.com/v3/stephs829.j7hoj6gn/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',  
+    }),
+    latlng = L.latLng(19.542915, -155.665857);
+
+  var map = L.map('map', { center: latlng, zoom: 9, layers: [tiles] });
+
+  var progress = document.getElementById('progress');
+  var progressBar = document.getElementById('progress-bar');
+
+  function updateProgressBar(processed, total, elapsed, layersArray) {
+    if (elapsed > 1000) {
+      // if it takes more than a second to load, display the progress bar:
+      progress.style.display = 'block';
+      progressBar.style.width = Math.round(processed/total*100) + '%';
+    }
+
+    if (processed === total) {
+      // all markers processed - hide the progress bar:
+      progress.style.display = 'none';
+    }
+  }
+
+  var markers = L.markerClusterGroup({ chunkedLoading: true, chunkProgress: updateProgressBar });
+
+  var markerList = [];
+
+  //console.log('start creating markers: ' + window.performance.now());
+
+  for (var i = 0; i < addressPoints.length; i++) {
+    var a = addressPoints[i];
+    var title = a[2];
+    var marker = L.marker(L.latLng(a[0], a[1]), { title: title });
+    marker.bindPopup(title);
+    markerList.push(marker);
+  }
+
+  //console.log('start clustering: ' + window.performance.now());
+
+  markers.addLayers(markerList);
+  map.addLayer(markers);
+
+  //console.log('end clustering: ' + window.performance.now());

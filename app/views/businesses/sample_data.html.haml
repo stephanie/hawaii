@@ -1,0 +1,34 @@
+%ul 
+  - @rows.each do |row|
+    %li 
+      = row["name"]
+      %ul
+        %li
+          Factual id: 
+          = row["factual_id"] 
+        %li
+          Address: 
+          = row["address"] 
+        %li
+          Extended address: 
+          = row["address_extended"] 
+        %li
+          Town/City: 
+          = row["locality"] 
+        %li
+          Postcode: 
+          = row["postcode"]
+        %li
+          Category: 
+          = row["category_labels"] 
+        %li
+          Latitude: 
+          = row["latitude"]
+        %li
+          Longitude: 
+          = row["longitude"] 
+        %li
+          Category ID:
+          = row["category_ids"]
+
+= @yelp
