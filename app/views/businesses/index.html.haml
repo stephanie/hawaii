@@ -3,6 +3,7 @@
 
 %div#map
 
+= javascript_include_tag "vendor/leaflet.markercluster-src.js"
 :javascript
   //adapted from marker-clustering-realworld 50000 example
   var tiles = L.tileLayer('http://{s}.tiles.mapbox.com/v3/stephs829.j7hoj6gn/{z}/{x}/{y}.png', {
@@ -34,18 +35,32 @@
   var markerList = [];
 
   //console.log('start creating markers: ' + window.performance.now());
+  $.ajax({
+    url: '/api/businesses',
+    data: 'JSON',
+    success: function(data) {
+      var marker, title;
+      $.each(data, function(key, val) {
+        var business = val.business
+        if(business.latitude != null && business.longitude != null) {
+          title = business["full_address"];
+          marker = L.marker(L.latLng(business["latitude"], business["longitude"]), {title: title});
+          marker.bindPopup(title);
+          markerList.push(marker);
+        } else {
+          console.log(business.full_address);
+        }
+      });
+      markers.addLayers(markerList);
+      map.addLayer(markers);
+    },
+    error: function(a,b,c) {
+      console.log(a,b,c);
+    }
+  })
 
-  for (var i = 0; i < addressPoints.length; i++) {
-    var a = addressPoints[i];
-    var title = a[2];
-    var marker = L.marker(L.latLng(a[0], a[1]), { title: title });
-    marker.bindPopup(title);
-    markerList.push(marker);
-  }
+  // $.getJSON("/api/businesses", function(data) { });
 
   //console.log('start clustering: ' + window.performance.now());
-
-  markers.addLayers(markerList);
-  map.addLayer(markers);
 
   //console.log('end clustering: ' + window.performance.now());
