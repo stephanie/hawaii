@@ -18,13 +18,15 @@ class Yelp
 
 	def self.fill_form
 
-		agent = Mechanize.new
-
-		agent.get("http://www.yelp.com")
-		form = agent.page.forms[0]
-
-		@businesses = Business.all
+		@businesses = Business.where({:yelp_url => nil}).order(:id)
 		@businesses.each do |business|
+
+			agent = Mechanize.new
+
+			agent.get("http://www.yelp.com")
+			form = agent.page.forms[0]
+
+			# @business = Business.find(i)
 
 			business_name = business["name"]
 			business_location = business["address"].to_s + ", " + business["locality"].to_s + ", HI " + business["postcode"].to_s
@@ -53,12 +55,18 @@ class Yelp
 					yelp_avatar: avatar,
 					yelp_url: yelp_url
 				})
-			end
 
-			yelp_data.each do |yelp|
-			  business.update(yelp)
-			end
+				unless yelp_data[0].nil? && yelp_data[1].nil?
+					yelp_data.each do |yelp|
+					  business.update(yelp)
+					end
+				end
 
+				puts yelp_data
+			end
+			puts search_result_title
+			puts business_name + business_location
+			puts business.inspect
 		end
 			 
 	end
