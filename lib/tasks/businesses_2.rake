@@ -6,20 +6,20 @@ namespace :hawaii do
       factual = Factual.new Factual::KEY, Factual::SECRET
 
       #Localities with less than 500 businesses, within row limit
-      hi_localities = ["HALEIWA", "KOLOA", "KEALAKEKUA", "HAIKU", "KEAAU", "PEARL HARBOR", "KULA", "WAIKOLOA", "PAHOA", "WAIMANALO", "PAIA", "KILAUEA", "HONOKAA", "KALAHEO", "KAUNAKAKAI", "WAIMEA", "CAPTAIN COOK", "HANALEI", "WAIALUA", "PRINCEVILLE", "LANAI CITY", "KAHUKU", "HANA", "HOLUALOA", "HANAPEPE", "VOLCANO", "KAPAAU", "NAALEHU"]
+      hi_localities = ["KOLOA", "HALEIWA", "KEALAKEKUA" , "HAIKU", "PEARL HARBOR", "KEAAU", "KULA" , "WAIKOLOA" , "PAHOA", "WAIMANALO", "PAIA" , "KILAUEA", "HONOKAA", "KAUNAKAKAI" , "KALAHEO", "WAIMEA" , "HANALEI", "CAPTAIN COOK", "PRINCEVILLE", "WAIALUA", "LANAI CITY", "KAHUKU" , "HANA" , "VOLCANO", "KAPAAU" , "HANAPEPE" , "HOLUALOA" , "HAUULA"]
 
       hi_localities.each do |locality|
         count = factual.facets("places-us").select("region").filters("locality" => "#{locality}").columns
         
-        if count["region"].blank? == false
-          count = (count["region"]["hi"] / 50).ceil
-          if count > 9 
-            count = 9
+        # if count["region"].blank? == false
+          count = (count["region"]["hi"] / 20).ceil
+          if count > 24
+            count = 24
           end
 
           (0..count).each do |i|
 
-            rows = factual.table("places-us").filters("$and" => ["locality" => "#{locality}", "region" => "hi"]).offset(i*20).limit(50)
+            rows = factual.table("places-us").filters("$and" => ["locality" => "#{locality}", "region" => "hi"]).offset(i*20)
 
             business_data = []
             rows.each do |row|
@@ -46,7 +46,7 @@ namespace :hawaii do
             end
 
           end
-        end
+        # end
 
       end
 
