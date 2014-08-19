@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140817174249) do
+ActiveRecord::Schema.define(version: 20140819203708) do
 
   create_table "businesses", force: true do |t|
     t.string   "name"
@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(version: 20140817174249) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "category_ids"
+    t.string   "yelp_avatar"
+    t.string   "yelp_url"
   end
 
 end
