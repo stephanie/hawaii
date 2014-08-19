@@ -5,7 +5,8 @@ namespace :hawaii do
 
       factual = Factual.new Factual::KEY, Factual::SECRET
 
-      hi_localities = ["HONOLULU", "HILO", "KAILUA KONA", "WAILUKU", "KAILUA ", "AIEA", "WAIPAHU", "KIHEI", "LAHAINA", "KAHULUI", "LIHUE", "KANEOHE", "KAPOLEI", "KAPAA", "PEARL CITY", "TRIPLER ARMY MEDICAL CENTER", "MILILANI", "WAHIAWA", "WAIANAE", "KAMUELA", "MAKAWAO", "EWA BEACH", "HALEIWA", "KOLOA", "KEALAKEKUA", "HAIKU", "KEAAU", "PEARL HARBOR", "KULA", "WAIKOLOA", "PAHOA", "WAIMANALO", "PAIA", "KILAUEA", "HONOKAA", "KALAHEO", "KAUNAKAKAI", "WAIMEA", "CAPTAIN COOK", "HANALEI", "WAIALUA", "PRINCEVILLE", "LANAI CITY", "KAHUKU", "HANA", "HOLUALOA", "HANAPEPE", "VOLCANO", "KAPAAU", "NAALEHU"]
+      #hi_localities with more than 500 businesses, must be split by locality AND category
+      hi_localities = ["HONOLULU", "HILO", "KAILUA KONA", "WAILUKU", "KAILUA ", "AIEA", "WAIPAHU", "KIHEI", "LAHAINA", "KAHULUI", "LIHUE", "KANEOHE", "KAPOLEI", "KAPAA", "PEARL CITY", "TRIPLER ARMY MEDICAL CENTER", "MILILANI", "WAHIAWA", "WAIANAE", "KAMUELA", "MAKAWAO", "EWA BEACH"]
 
       hi_localities.each do |locality|
         (2..460).each do |category_id| #Factual lists 460 categories with IDs starting from 1
