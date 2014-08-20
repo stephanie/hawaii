@@ -18,18 +18,17 @@ class Yelp
 
 	def self.fill_form
 
-		last_updated = Business.where("yelp_url IS NOT NULL").order("id DESC").limit(1)
-  	last_updated_id = last_updated[0][:id]
+		# last_updated = Business.where("yelp_url IS NOT NULL").order("id DESC").limit(1)
+  # 	last_updated_id = last_updated[0][:id]
 
-		@businesses = Business.where({:yelp_url => nil}).where("id > ?", last_updated_id).order(:id)
+  	@businesses = Business.all.where({:yelp_url => nil})
+		# @businesses = Business.where({:yelp_url => nil}).where("id > ?", last_updated_id).order(:id)
 		@businesses.each do |business|
 
 			agent = Mechanize.new
 
 			agent.get("http://www.yelp.com")
 			form = agent.page.forms[0]
-
-			# @business = Business.find(i)
 
 			business_name = business["name"]
 			business_location = business["address"].to_s + ", " + business["locality"].to_s + ", HI " + business["postcode"].to_s
@@ -50,7 +49,7 @@ class Yelp
 
 				yelp_data = []
 
-				if search_result_title.downcase.include? business_name.downcase
+				if search_result_title.downcase.include? business_name.downcase || business_name.downcase.include? search_result_title.downcase
 					avatar = search_result.at("div.media-avatar img").attributes["src"]
 					yelp_url = search_result.at("div.media-avatar a").attributes["href"]
 					unless avatar.include? 'http'
