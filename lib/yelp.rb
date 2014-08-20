@@ -18,7 +18,10 @@ class Yelp
 
 	def self.fill_form
 
-		@businesses = Business.where({:yelp_url => nil}).where("id > ?", 6296).order(:id)
+		last_updated = Business.where("yelp_url IS NOT NULL").order("id DESC").limit(1)
+  	last_updated_id = last_updated[0][:id]
+
+		@businesses = Business.where({:yelp_url => nil}).where("id > ?", last_updated_id).order(:id)
 		@businesses.each do |business|
 
 			agent = Mechanize.new
