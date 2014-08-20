@@ -18,7 +18,7 @@ class Yelp
 
 	def self.fill_form
 
-		@businesses = Business.where({:yelp_url => nil}).order(:id)
+		@businesses = Business.where({:yelp_url => nil}).where("id > ?", 6296).order(:id)
 		@businesses.each do |business|
 
 			agent = Mechanize.new
@@ -34,39 +34,46 @@ class Yelp
 			form["find_desc"] = business_name
 			form["find_loc"] = business_location
 
-			agent.page.forms[0].submit
+			begin 
+				agent.page.forms[0].submit
+			rescue Mechanize::ResponseCodeError => e
+				puts "Error: " + e.response_code
+			end			
 
 			search_result = agent.page.search("//div[@data-key='1']")
-			search_result_title = search_result.search("h3.search-result-title").text
 
-			yelp_data = []
+			if search_result
+				search_result_title = search_result.search("h3.search-result-title").text
 
-			if search_result_title.downcase.include? business_name.downcase
-				avatar = search_result.at("div.media-avatar img").attributes["src"]
-				yelp_url = search_result.at("div.media-avatar a").attributes["href"]
-				unless avatar.include? 'http'
-					avatar = 'http:' + avatar
-				end
-				unless yelp_url.include? 'yelp.com'
-					yelp_url = 'http://www.yelp.com' + yelp_url
-				end
+				yelp_data = []
 
-				yelp_data.push({
-					yelp_avatar: avatar,
-					yelp_url: yelp_url
-				})
-
-				unless yelp_data[0].nil? && yelp_data[1].nil?
-					yelp_data.each do |yelp|
-					  business.update(yelp)
+				if search_result_title.downcase.include? business_name.downcase
+					avatar = search_result.at("div.media-avatar img").attributes["src"]
+					yelp_url = search_result.at("div.media-avatar a").attributes["href"]
+					unless avatar.include? 'http'
+						avatar = 'http:' + avatar
 					end
-				end
+					unless yelp_url.include? 'yelp.com'
+						yelp_url = 'http://www.yelp.com' + yelp_url
+					end
 
-				puts yelp_data
+					yelp_data.push({
+						yelp_avatar: avatar,
+						yelp_url: yelp_url
+					})
+
+					unless yelp_data[0].nil? && yelp_data[1].nil?
+						yelp_data.each do |yelp|
+						  business.update(yelp)
+						end
+					end
+
+					# puts yelp_data
+				end
+				# puts search_result_title
+				# puts business_name + business_location
+				# puts business.inspect
 			end
-			puts search_result_title
-			puts business_name + business_location
-			puts business.inspect
 		end
 			 
 	end
