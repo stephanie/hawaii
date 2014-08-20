@@ -1,6 +1,6 @@
 class Business < ActiveRecord::Base
   include Sidekiq::Worker
-  sidekiq_options retry: false
+  # sidekiq_options retry: false
 
   has_and_belongs_to_many :categories
 

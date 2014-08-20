@@ -9,7 +9,8 @@ gem 'factual-api', :require => 'factual'
 # Workers
 gem 'sidekiq'
 gem 'whenever'
-gem 'sinatra' # required for sidekiq
+gem 'sinatra', require: false # required for sidekiq
+gem 'slim'
 
 # Model
 gem 'mechanize'

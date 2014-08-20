@@ -1,6 +1,6 @@
-Hawaii::Application.routes.draw do
+require 'sidekiq/web'
 
-  require 'sidekiq/web'
+Hawaii::Application.routes.draw do
   mount Sidekiq::Web => '/current_tasks'
 
   scope :api, defaults: { format: :json } do
