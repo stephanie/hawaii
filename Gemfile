@@ -11,6 +11,7 @@ gem 'sidekiq'
 gem 'whenever'
 gem 'sinatra', require: false # required for sidekiq
 gem 'slim'
+gem 'whenever', require: false
 
 # Model
 gem 'mechanize'

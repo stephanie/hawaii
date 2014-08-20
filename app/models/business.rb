@@ -1,16 +1,10 @@
 class Business < ActiveRecord::Base
-  include Sidekiq::Worker
-  # sidekiq_options retry: false
 
   has_and_belongs_to_many :categories
 
   LOCATIONS = ["HONOLULU", "HILO", "KAILUA KONA", "WAILUKU", "KAILUA ", "AIEA", "WAIPAHU", "KIHEI", "LAHAINA", "KAHULUI", "LIHUE", "KANEOHE", "KAPOLEI", "KAPAA", "PEARL CITY", "TRIPLER ARMY MEDICAL CENTER", "MILILANI", "WAHIAWA", "WAIANAE", "KAMUELA", "MAKAWAO", "EWA BEACH", "KOLOA", "HALEIWA", "KEALAKEKUA" , "HAIKU", "PEARL HARBOR", "KEAAU", "KULA" , "WAIKOLOA" , "PAHOA", "WAIMANALO", "PAIA" , "KILAUEA", "HONOKAA", "KAUNAKAKAI" , "KALAHEO", "WAIMEA" , "HANALEI", "CAPTAIN COOK", "PRINCEVILLE", "WAIALUA", "LANAI CITY", "KAHUKU" , "HANA" , "VOLCANO", "KAPAAU" , "HANAPEPE" , "HOLUALOA" , "HAUULA" ]
 
-  def perform(start=0, count=21, include_categories=false)
-    self.download_factual(start, count, include_categories)
-  end
-
-  def self.download_factual(start, count, include_categories)
+  def download_factual(start, count, include_categories)
     factual = Factual.new Factual::KEY, Factual::SECRET
 
     limit = 50

@@ -4,11 +4,6 @@ require 'open-uri'
 require 'similar_text'
 
 class Yelp
-	include Sidekiq::Worker
-
-	def perform()
-		self.fill_form_working_version
-	end
 
 	def self.fill_form_working_version
 
