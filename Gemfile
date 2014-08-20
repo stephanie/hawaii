@@ -9,8 +9,7 @@ gem 'factual-api', :require => 'factual'
 # Model
 gem 'mechanize'
 gem 'nokogiri'
-gem 'watir-nokogiri'
-gem 'watir-webdriver'
+gem 'similar_text'
 
 # Testing
 group :development, :test do
