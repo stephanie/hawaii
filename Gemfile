@@ -6,6 +6,11 @@ gem 'rails', '4.0.5'
 gem 'mysql2'
 gem 'factual-api', :require => 'factual'
 
+# Workers
+gem 'sidekiq'
+gem 'whenever'
+gem 'sinatra' # required for sidekiq
+
 # Model
 gem 'mechanize'
 gem 'nokogiri'

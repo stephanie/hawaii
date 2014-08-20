@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140819203708) do
+ActiveRecord::Schema.define(version: 20140820150358) do
 
   create_table "businesses", force: true do |t|
     t.string   "name"
@@ -27,6 +27,20 @@ ActiveRecord::Schema.define(version: 20140819203708) do
     t.string   "category_ids"
     t.string   "yelp_avatar"
     t.string   "yelp_url"
+  end
+
+  create_table "businesses_categories", id: false, force: true do |t|
+    t.integer "business_id"
+    t.integer "category_id"
+  end
+
+  add_index "businesses_categories", ["business_id"], name: "index_businesses_categories_on_business_id", using: :btree
+  add_index "businesses_categories", ["category_id"], name: "index_businesses_categories_on_category_id", using: :btree
+
+  create_table "categories", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
