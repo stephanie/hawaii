@@ -43,7 +43,11 @@
       $.each(data, function(key, val) {
         var business = val.business
         if(business.latitude != null && business.longitude != null) {
-          title = business["full_address"];
+          if (business["yelp_url"]) {
+            title = "<div class='custom-popup-content'><div class='popup-img'><a class='popup-yelp-link' href='" + business["yelp_url"] + "'><img src='" + business["yelp_avatar"] + "'></a></div><div class='popup-full-address'><span class='popup-name'>" + business["name"] + "</span>" + business["full_address"] + "</div></div>";
+          } else {
+            title = "<div class='custom-popup-content'><div class='popup-img'><img src='../../images/bindo-default-map-img.png'></div><div class='popup-full-address'><span class='popup-name'>" + business["name"] + "</span>" + business["full_address"] + "</div></div>";
+          }
           marker = L.marker(L.latLng(business["latitude"], business["longitude"]), {title: title});
           marker.bindPopup(title);
           markerList.push(marker);

@@ -18,3 +18,12 @@
   width: 100%;
   height: 800px;
 }
+
+.leaflet-popup-content {
+  width: 250px;
+  height: 90px;
+  margin: 20px;
+}
+.popup-yelp {
+  float: left;
+}
