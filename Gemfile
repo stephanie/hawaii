@@ -6,12 +6,14 @@ gem 'rails', '4.0.5'
 gem 'mysql2'
 gem 'factual-api', :require => 'factual'
 
+#passwords
+gem 'dotenv-rails', :groups => [:development, :test]
+
 # Workers
 gem 'sidekiq'
-gem 'whenever'
+gem 'whenever', require: false
 gem 'sinatra', require: false # required for sidekiq
 gem 'slim'
-gem 'whenever', require: false
 
 # Model
 gem 'mechanize'
