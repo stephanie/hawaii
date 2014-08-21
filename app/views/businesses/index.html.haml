@@ -59,7 +59,7 @@
           if (business["yelp_url"]) {
             title = "<div class='custom-popup-content' data-id='" + business["id"] + "'><div class='popup-img'><a class='popup-yelp-link' href='" + business["yelp_url"] + "'><img src='" + business["yelp_avatar"] + "'></a></div><div class='popup-full-address'><span class='popup-name'>" + business["name"] + "</span>" + business["full_address"] + "</div></div>";
           } else {
-            title = "<div class='custom-popup-content' data-id='" + business["id"] + "'><div class='popup-img'><img src='#{asset_path('default-map-img.png')}'></div><div class='popup-full-address'><span class='popup-name'>" + business["name"] + "</span>" + business["full_address"] + "</div></div>";
+            title = "<div class='custom-popup-content' data-id='" + business["id"] + "'><div class='popup-img'><img src='http://i.imgur.com/4vXQuBZ.png'></div><div class='popup-full-address'><span class='popup-name'>" + business["name"] + "</span>" + business["full_address"] + "</div></div>";
           }
           marker = L.marker(L.latLng(business["latitude"], business["longitude"]), {title: title});
           marker.bindPopup(title);
