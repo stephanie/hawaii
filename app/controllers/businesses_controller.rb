@@ -14,7 +14,15 @@ class BusinessesController < ApplicationController
         @businesses = Business.all
       }
       format.html {
-        
+        @business_count = Business.all.count
+      }
+    end
+  end
+
+  def categories
+    respond_to do |format|
+      format.json {
+        @businesses = Business.all
       }
     end
   end

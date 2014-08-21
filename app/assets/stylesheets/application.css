@@ -10,13 +10,13 @@
  *
  *= require vendor/MarkerCluster
  *= require vendor/MarkerCluster.Default
- *= require vendor/screen
  *= require_self
  */
 
 #map {
   width: 100%;
   height: 800px;
+  border: 1px solid #ccc;
 }
 
 .leaflet-popup-content {
@@ -24,41 +24,75 @@
   height: 90px;
   margin: 20px;
 }
+
 .popup-yelp {
   float: left;
+}
+
+#progress {
+  display: block;
+  position: absolute;
+  z-index: 1000;
+  left: 150px;
+  bottom: 50px;
+  width: 500px;
+  height: 50px;
+  margin-top: -20px;
+  margin-left: -100px;
+  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 4px;
+  padding: 2px;
+ }
+
+ #progress-bar {
+  width: 0;
+  height: 100%;
+  background-color: #76A6FC;
+  border-radius: 4px;
 }
 
 .menu-ui {
   background:#fff;
   position:absolute;
-  top:10px;right:10px;
+  top:20px;
+  right:20px;
   z-index:1;
-  border-radius:3px;
+  border-radius:4px;
   width:120px;
-  border:1px solid rgba(0,0,0,0.4);
 }
 
 .menu-ui a {
-  font-size:13px;
-  color:#404040;
-  display:block;
-  margin:0;padding:0;
-  padding:10px;
-  text-decoration:none;
-  border-bottom:1px solid rgba(0,0,0,0.25);
-  text-align:center;
+  font-size: 20px;
+  color: rgb(160,160,160);
+  display: block;
+  margin: 0;
+  padding: 12px;
+  text-decoration: none;
+  border-bottom: 1px solid rgb(210,210,210);
+  text-align: center;
+  font-family: 'Calibri';
 }
 
 .menu-ui a:first-child {
-  border-radius:3px 3px 0 0;
+  border-radius:4px 4px 0 0;
 }
 
 .menu-ui a:last-child {
   border:none;
-  border-radius:0 0 3px 3px;
+  border-radius:0 0 4px 4px;
 }
 
 .menu-ui a:hover {
-  background:#f8f8f8;
-  color:#404040;
+  background:rgb(230,230,230);
+}
+
+#progress-text {
+  position: absolute;
+  left: 0px;
+  top: -36px;
+  font-size: 36px;
+  font-family: 'Calibri';
+  text-transform: uppercase;
+  color: rgb(160,160,160);
 }

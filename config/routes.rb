@@ -4,9 +4,9 @@ Hawaii::Application.routes.draw do
   mount Sidekiq::Web => '/current_tasks'
 
   scope :api, defaults: { format: :json } do
-    resources :businesses, only: [ :index ] #do
-    #   get ':id' => 'businesses#index', on: :collection
-    # end
+    resources :businesses, only: [ :index ] do
+      get 'categories' => 'businesses#categories', on: :collection
+    end
   end
 
   resources :businesses, only: [ :index, :create, :update ]

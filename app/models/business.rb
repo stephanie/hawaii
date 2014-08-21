@@ -4,7 +4,7 @@ class Business < ActiveRecord::Base
 
   LOCATIONS = ["HONOLULU", "HILO", "KAILUA KONA", "WAILUKU", "KAILUA ", "AIEA", "WAIPAHU", "KIHEI", "LAHAINA", "KAHULUI", "LIHUE", "KANEOHE", "KAPOLEI", "KAPAA", "PEARL CITY", "TRIPLER ARMY MEDICAL CENTER", "MILILANI", "WAHIAWA", "WAIANAE", "KAMUELA", "MAKAWAO", "EWA BEACH", "KOLOA", "HALEIWA", "KEALAKEKUA" , "HAIKU", "PEARL HARBOR", "KEAAU", "KULA" , "WAIKOLOA" , "PAHOA", "WAIMANALO", "PAIA" , "KILAUEA", "HONOKAA", "KAUNAKAKAI" , "KALAHEO", "WAIMEA" , "HANALEI", "CAPTAIN COOK", "PRINCEVILLE", "WAIALUA", "LANAI CITY", "KAHUKU" , "HANA" , "VOLCANO", "KAPAAU" , "HANAPEPE" , "HOLUALOA" , "HAUULA" ]
 
-  def download_factual(start, count, include_categories)
+  def self.download_factual(start, count, include_categories)
     factual = Factual.new Factual::KEY, Factual::SECRET
 
     limit = 50

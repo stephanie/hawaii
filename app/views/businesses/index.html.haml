@@ -1,5 +1,7 @@
 %div#progress
   %div#progress-bar
+  %div#progress-text
+    Loading map markers... 
 
 %div#map
 %div#navigation.menu-ui
@@ -7,7 +9,7 @@
     State
   %a{ :href => "#", :data => { 'zoom' => 10 } }
     Zipcode
-  %a{ :href => "#", :data => { 'zoom' => 17, 'position' => '21.271, -157.815'} }
+  %a{ :href => "#", :data => { 'zoom' => 17, 'position' => '21.2689, -157.817'} }
     Marker
 
 = javascript_include_tag "vendor/leaflet.markercluster-src.js"
@@ -52,12 +54,12 @@
     success: function(data) {
       var marker, title;
       $.each(data, function(key, val) {
-        var business = val.business
+        var business = val.business;
         if(business.latitude != null && business.longitude != null) {
           if (business["yelp_url"]) {
-            title = "<div class='custom-popup-content'><div class='popup-img'><a class='popup-yelp-link' href='" + business["yelp_url"] + "'><img src='" + business["yelp_avatar"] + "'></a></div><div class='popup-full-address'><span class='popup-name'>" + business["name"] + "</span>" + business["full_address"] + "</div></div>";
+            title = "<div class='custom-popup-content' data-id='" + business["id"] + "'><div class='popup-img'><a class='popup-yelp-link' href='" + business["yelp_url"] + "'><img src='" + business["yelp_avatar"] + "'></a></div><div class='popup-full-address'><span class='popup-name'>" + business["name"] + "</span>" + business["full_address"] + "</div></div>";
           } else {
-            title = "<div class='custom-popup-content'><div class='popup-img'><img src='../../images/bindo-default-map-img.png'></div><div class='popup-full-address'><span class='popup-name'>" + business["name"] + "</span>" + business["full_address"] + "</div></div>";
+            title = "<div class='custom-popup-content' data-id='" + business["id"] + "'><div class='popup-img'><img src='#{asset_path('default-map-img.png')}'></div><div class='popup-full-address'><span class='popup-name'>" + business["name"] + "</span>" + business["full_address"] + "</div></div>";
           }
           marker = L.marker(L.latLng(business["latitude"], business["longitude"]), {title: title});
           marker.bindPopup(title);
@@ -72,7 +74,47 @@
     error: function(a,b,c) {
       console.log(a,b,c);
     }
-  })
+  });
+  
+  $("#navigation").click(function() {
+    $.ajax({
+      url: '/api/businesses/categories',
+      data: 'JSON',
+      success: function(data) {
+        $.each(data, function(key, val) {
+          var business = val.business;
+          var business_id = business["id"];
+          var category_ids = business["category_ids"];
+          $.each(category_ids, function( index, value ) {
+            if (value >= 2 && value <= 19) {
+              //automotive
+            } else if (value >= 20 && value <= 61) {
+              //community and government
+            } else if (value >= 62 && value <= 106) {
+              //healthcare
+            } else if (value >= 107 && value <= 122) {
+              //landmarks
+            } else if (value >= 123 && value <= 176) {
+              //retail
+            } else if (value >= 177 && value <= 307) {
+              //businesses and services
+            } else if (value >= 308 && value <= 371) {
+              //social
+            } else if (value >= 372 && value <= 414) {
+              //sports and recreation
+            } else if (value >= 415 && value <= 429) {
+              //transportation
+            } else if (value >= 430 && value <= 440) {
+              //travel
+            } 
+          });
+        });
+      },
+      error: function(a,b,c) {
+        console.log(a,b,c);
+      }
+    });
+  });
 
   // $.getJSON("/api/businesses", function(data) { });
 
