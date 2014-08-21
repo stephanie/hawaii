@@ -6,7 +6,7 @@ namespace :hawaii do
       
       Yelp.fill_form_working_version
 
-      # YelpWorker.perform_async #queues in sidekiq to do: fix this
+      # YelpWorker.perform_async #UNCOMMENT TO SET UP BACKGROUND TASKS & QUEUE IN SIDEKIQ
 
     end
   end

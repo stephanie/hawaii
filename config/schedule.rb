@@ -13,12 +13,15 @@
 #   rake "some:great:rake:task"
 # end
 #
-every 1.weeks do
-  rake "hawaii:get_factual"
-end
 
-every 2.weeks do
-  rake "hawaii:get_yelp_data"
-end
+#UNCOMMENT TO SET UP SCHEDULED RAKE TASKS
+# every 1.weeks do
+#   rake "hawaii:get_factual"
+# end
+
+# every 2.weeks do
+#   rake "hawaii:get_yelp_data"
+# end
+
 
 # Learn more: http://github.com/javan/whenever
