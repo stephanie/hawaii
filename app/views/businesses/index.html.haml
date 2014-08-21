@@ -64,9 +64,10 @@
           marker = L.marker(L.latLng(business["latitude"], business["longitude"]), {title: title});
           marker.bindPopup(title);
           markerList.push(marker);
-        } else {
-          console.log(business.full_address);
-        }
+        } 
+        //else {
+          //console.log(business.full_address);
+        //}
       });
       markers.addLayers(markerList);
       map.addLayer(markers);
