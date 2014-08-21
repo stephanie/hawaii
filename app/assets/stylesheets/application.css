@@ -32,7 +32,7 @@
   background-color: #fff;
   background-color: rgba(255, 255, 255, 0.7);
   border-radius: 4px;
-  padding: 2px;
+  padding: 3px;
  }
 
  #progress-bar {
@@ -80,7 +80,7 @@
 #progress-text {
   position: absolute;
   left: 0px;
-  top: -36px;
+  top: -45px;
   font-size: 36px;
   font-family: 'Calibri';
   text-transform: uppercase;
@@ -94,8 +94,8 @@
 /*popup styles*/
 
 .leaflet-popup-content {
-  width: 250px;
-  height: 95px;
+  width: 225px;
+  height: 130px;
   margin: 15px;
 }
 
@@ -105,6 +105,7 @@
 }
 .popup-img {
   float: right;
+  margin-bottom: 5px
 }
 .popup-full-address .popup-name {
   font-weight: bold;
@@ -117,8 +118,55 @@
   font-size: 14px;
 }
 .popup-full-address {
-  width: 145px;
+  width: 120px;
+  color: rgb(80,80,80);
 }
 .leaflet-popup-close-button { 
   display: none; 
+}
+.popup-cat {
+  clear: both;
+  border-top: 1px solid rgb(210,210,210);
+  padding-top: 5px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.popup-cat img {
+  max-height: 12px;
+  margin-right: 6px;
+}
+.cat-icon {
+  max-height: 13px;
+  margin-right: 8px;
+  margin-top: 6px;
+}
+.automotive {
+  color: #01A58D;
+}
+.community-government {
+  color: #005FA1;
+}
+.healthcare {
+  color: #D72428;
+}
+.landmarks {
+  color: #7f8c8d;
+}
+.retail {
+  color: #DE5A29;
+}
+.businesses-services {
+  color: #154576;
+}
+.social {
+  color: #B995C5;
+}
+.sports-recreation {
+  color: #2ecc71;
+}
+.transportation {
+  color: #5E3C3B;
+}
+.travel {
+  color: #2CC36B;
 }

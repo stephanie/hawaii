@@ -12,7 +12,6 @@
   %a{ :href => "#", :data => { 'zoom' => 17, 'position' => '21.2689, -157.817'} }
     Marker
 
-/ = javascript_include_tag "vendor/leaflet.markercluster-src.js"
 :javascript
   
   ////adapted from marker-clustering-realworld 50000 example
@@ -28,6 +27,24 @@
   ////progress bar
   var progress = document.getElementById('progress');
   var progressBar = document.getElementById('progress-bar');
+  var finishedLoading = false;
+
+  function blink(selector){
+    if (finishedLoading == false) {
+      console.log('loading');
+      $(selector).fadeOut(1200, function(){
+          $(this).fadeIn(1200, function(){
+              blink(this);
+          });
+      });
+    } else {
+      return;
+    }
+  }
+
+  $(function() {
+    blink('#progress-text');
+  });
 
   function updateProgressBar(processed, total, elapsed, layersArray) {
     if (elapsed > 1000) {
@@ -39,6 +56,7 @@
     if (processed === total) {
       // all markers processed - hide the progress bar:
       progress.style.display = 'none';
+      finishedLoading = true;
     }
   }
 
@@ -58,35 +76,39 @@
         if(business.latitude != null && business.longitude != null) {
           if (business["category_ids"]) {
             var category;
+            var category_class;
             var category_ids = business["category_ids"];
             $.each(category_ids, function( index, value ) {
               if (value >= 2 && value <= 19) {
-               category = 'automotive';
+               category_class = category = 'automotive';
               } else if (value >= 20 && value <= 61) {
-               category = 'community and government';
+                category = 'community and government';
+                category_class = 'community-government'
               } else if (value >= 62 && value <= 106) {
-               category = 'healthcare';
+                category_class = category = category = 'healthcare';
               } else if (value >= 107 && value <= 122) {
-               category = 'landmarks';
+                category_class = category = category = 'landmarks';
               } else if (value >= 123 && value <= 176) {
-               category = 'retail';
+                category_class = category = category = 'retail';
               } else if (value >= 177 && value <= 307) {
-               category = 'businesses and services';
+                category = 'businesses and services';
+                category_class = 'businesses-services'
               } else if (value >= 308 && value <= 371) {
-               category = 'social';
+                category_class = category = 'social';
               } else if (value >= 372 && value <= 414) {
-               category = 'sports and recreation';
+                category = 'sports and recreation';
+                category_class = 'sports-recreation'
               } else if (value >= 415 && value <= 429) {
-               category = 'transportation';
+                category_class = category = 'transportation';
               } else if (value >= 430 && value <= 440) {
-               category = 'travel';
+                category_class = category = 'travel';
               } 
             });
           }
           if (business["yelp_url"]) {
-            title = "<div class='custom-popup-content' data-id='" + business["id"] + "'><div class='popup-img'><a class='popup-yelp-link' href='" + business["yelp_url"] + "'><img src='" + business["yelp_avatar"] + "'></a></div><div class='popup-full-address'><span class='popup-name'>" + business["name"] + "</span>" + business["full_address"] + "</div><div class='popup-cat'>" + category + "</div></div>";
+            title = "<div class='custom-popup-content'><div class='popup-img'><a class='popup-yelp-link' href='" + business["yelp_url"] + "'><img src='" + business["yelp_avatar"] + "'></a></div><div class='popup-full-address'><span class='popup-name'>" + business["name"] + "</span>" + business["full_address"] + "</div><div class='popup-cat " + category_class + "'><img src='http://i.imgur.com/Dswf06i.png'>" + category + "</div></div>";
           } else {
-            title = "<div class='custom-popup-content' data-id='" + business["id"] + "'><div class='popup-img'><img src='http://i.imgur.com/4vXQuBZ.png'></div><div class='popup-full-address'><span class='popup-name'>" + business["name"] + "</span>" + business["full_address"] + "<div class='popup-cat'>" + category + "</div></div>";
+            title = "<div class='custom-popup-content'><div class='popup-img'><img src='http://i.imgur.com/4vXQuBZ.png'></div><div class='popup-full-address'><span class='popup-name'>" + business["name"] + "</span>" + business["full_address"] + "</div><div class='popup-cat " + category_class + "'><img src='http://i.imgur.com/Dswf06i.png'>" + category + "</div></div>";
           }
           marker = L.marker(L.latLng(business["latitude"], business["longitude"]), {title: title});
           marker.bindPopup(title);
