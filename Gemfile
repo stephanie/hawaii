@@ -6,7 +6,7 @@ gem 'rails', '4.0.5'
 gem 'mysql2'
 gem 'factual-api', :require => 'factual'
 
-#passwords
+#Passwords
 gem 'dotenv-rails', :groups => [:development, :test]
 
 # Workers
@@ -27,6 +27,9 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_girl'
 end
+
+#production
+gem 'rails_12factor', group: :production
 
 # Server
 gem 'puma'

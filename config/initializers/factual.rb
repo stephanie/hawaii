@@ -1,4 +1,4 @@
 class Factual
-  KEY = 'qZ0hPPOptMkr7FzLWtVuFfy5ATnUlvKfkhQDc765'
-  SECRET = 'iZ2GxV4qgu7F5IBu4HYslIVJjyX8tXCiQO6FGHPK'
+  KEY = 'Jhizlfa4rYo5tS6MQrkV0TXPgqudtU0Ea3D1EgBa'
+  SECRET = 'zqY2GiBrqgNHBoNwIENl6muSM4OoXjSOJkRxkyDo'
 end
