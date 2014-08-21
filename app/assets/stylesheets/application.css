@@ -19,16 +19,6 @@
   border: 1px solid #ccc;
 }
 
-.leaflet-popup-content {
-  width: 250px;
-  height: 90px;
-  margin: 20px;
-}
-
-.popup-yelp {
-  float: left;
-}
-
 #progress {
   display: block;
   position: absolute;
@@ -84,7 +74,7 @@
 }
 
 .menu-ui a:hover {
-  background:rgb(230,230,230);
+  background:rgb(235,235,235);
 }
 
 #progress-text {
@@ -95,4 +85,40 @@
   font-family: 'Calibri';
   text-transform: uppercase;
   color: rgb(160,160,160);
+}
+
+.marker-cluster div {
+  font: 14px "Calibri", Arial, Helvetica, sans-serif;
+}
+
+/*popup styles*/
+
+.leaflet-popup-content {
+  width: 250px;
+  height: 95px;
+  margin: 15px;
+}
+
+.popup-yelp-link img {
+  border: 3px solid #C41208;
+  max-height: 90px;
+}
+.popup-img {
+  float: right;
+}
+.popup-full-address .popup-name {
+  font-weight: bold;
+  display: block;
+  font-size: 16px;
+  line-height: 20px;
+}
+.leaflet-popup-content {
+  font-family: 'Calibri';
+  font-size: 14px;
+}
+.popup-full-address {
+  width: 145px;
+}
+.leaflet-popup-close-button { 
+  display: none; 
 }
