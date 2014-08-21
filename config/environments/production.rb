@@ -23,7 +23,7 @@ Hawaii::Application.configure do
   config.serve_static_assets = true
   config.assets.compile = true
   config.assets.initialize_on_precompile = false
-  config.assets.precompile += %w( leaflet.markercluster-src.js )
+  config.assets.precompile += ['vendor/leaflet.markercluster-src.js']
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
