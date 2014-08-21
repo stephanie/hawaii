@@ -56,10 +56,37 @@
       $.each(data, function(key, val) {
         var business = val.business;
         if(business.latitude != null && business.longitude != null) {
+          if (business["category_ids"]) {
+            var category;
+            var category_ids = business["category_ids"];
+            $.each(category_ids, function( index, value ) {
+              if (value >= 2 && value <= 19) {
+               category = 'automotive';
+              } else if (value >= 20 && value <= 61) {
+               category = 'community and government';
+              } else if (value >= 62 && value <= 106) {
+               category = 'healthcare';
+              } else if (value >= 107 && value <= 122) {
+               category = 'landmarks';
+              } else if (value >= 123 && value <= 176) {
+               category = 'retail';
+              } else if (value >= 177 && value <= 307) {
+               category = 'businesses and services';
+              } else if (value >= 308 && value <= 371) {
+               category = 'social';
+              } else if (value >= 372 && value <= 414) {
+               category = 'sports and recreation';
+              } else if (value >= 415 && value <= 429) {
+               category = 'transportation';
+              } else if (value >= 430 && value <= 440) {
+               category = 'travel';
+              } 
+            });
+          }
           if (business["yelp_url"]) {
-            title = "<div class='custom-popup-content' data-id='" + business["id"] + "'><div class='popup-img'><a class='popup-yelp-link' href='" + business["yelp_url"] + "'><img src='" + business["yelp_avatar"] + "'></a></div><div class='popup-full-address'><span class='popup-name'>" + business["name"] + "</span>" + business["full_address"] + "</div></div>";
+            title = "<div class='custom-popup-content' data-id='" + business["id"] + "'><div class='popup-img'><a class='popup-yelp-link' href='" + business["yelp_url"] + "'><img src='" + business["yelp_avatar"] + "'></a></div><div class='popup-full-address'><span class='popup-name'>" + business["name"] + "</span>" + business["full_address"] + "</div><div class='popup-cat'>" + category + "</div></div>";
           } else {
-            title = "<div class='custom-popup-content' data-id='" + business["id"] + "'><div class='popup-img'><img src='http://i.imgur.com/4vXQuBZ.png'></div><div class='popup-full-address'><span class='popup-name'>" + business["name"] + "</span>" + business["full_address"] + "</div></div>";
+            title = "<div class='custom-popup-content' data-id='" + business["id"] + "'><div class='popup-img'><img src='http://i.imgur.com/4vXQuBZ.png'></div><div class='popup-full-address'><span class='popup-name'>" + business["name"] + "</span>" + business["full_address"] + "<div class='popup-cat'>" + category + "</div></div>";
           }
           marker = L.marker(L.latLng(business["latitude"], business["longitude"]), {title: title});
           marker.bindPopup(title);
@@ -75,46 +102,6 @@
     error: function(a,b,c) {
       console.log(a,b,c);
     }
-  });
-  
-  $("#navigation").click(function() {
-    $.ajax({
-      url: '/api/businesses/categories',
-      data: 'JSON',
-      success: function(data) {
-        $.each(data, function(key, val) {
-          var business = val.business;
-          var business_id = business["id"];
-          var category_ids = business["category_ids"];
-          $.each(category_ids, function( index, value ) {
-            if (value >= 2 && value <= 19) {
-              //automotive
-            } else if (value >= 20 && value <= 61) {
-              //community and government
-            } else if (value >= 62 && value <= 106) {
-              //healthcare
-            } else if (value >= 107 && value <= 122) {
-              //landmarks
-            } else if (value >= 123 && value <= 176) {
-              //retail
-            } else if (value >= 177 && value <= 307) {
-              //businesses and services
-            } else if (value >= 308 && value <= 371) {
-              //social
-            } else if (value >= 372 && value <= 414) {
-              //sports and recreation
-            } else if (value >= 415 && value <= 429) {
-              //transportation
-            } else if (value >= 430 && value <= 440) {
-              //travel
-            } 
-          });
-        });
-      },
-      error: function(a,b,c) {
-        console.log(a,b,c);
-      }
-    });
   });
 
   // $.getJSON("/api/businesses", function(data) { });

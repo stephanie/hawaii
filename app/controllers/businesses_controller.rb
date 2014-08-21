@@ -11,7 +11,7 @@ class BusinessesController < ApplicationController
   def index
     respond_to do |format|
       format.json {
-        @businesses = Business.all
+        @businesses = Business.all.includes(:categories)
       }
       format.html {
         @business_count = Business.all.count
@@ -19,13 +19,13 @@ class BusinessesController < ApplicationController
     end
   end
 
-  def categories
-    respond_to do |format|
-      format.json {
-        @businesses = Business.all
-      }
-    end
-  end
+  # def categories
+  #   respond_to do |format|
+  #     format.json {
+  #       # @businesses = Business.all.includes(:categories)
+  #     }
+  #   end
+  # end
 
   def create
     @business = Business.new(business_params)

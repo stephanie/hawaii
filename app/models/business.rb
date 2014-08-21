@@ -58,4 +58,11 @@ class Business < ActiveRecord::Base
     end
   end
 
+  def add_category_names
+    @businesses = Businesses.all
+    @businesses.each do |business|
+      
+    end 
+  end
+
 end
