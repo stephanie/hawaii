@@ -31,7 +31,6 @@
 
   function blink(selector){
     if (finishedLoading == false) {
-      console.log('loading');
       $(selector).fadeOut(1200, function(){
           $(this).fadeIn(1200, function(){
               blink(this);
