@@ -61,7 +61,7 @@
   text-decoration: none;
   border-bottom: 1px solid rgb(210,210,210);
   text-align: center;
-  font-family: 'Calibri';
+  font-family: 'Calibri', 'Trebuchet MS', sans-serif;
 }
 
 .menu-ui a:first-child {
@@ -82,13 +82,13 @@
   left: 0px;
   top: -45px;
   font-size: 36px;
-  font-family: 'Calibri';
+  font-family: 'Calibri', 'Trebuchet MS', sans-serif;
   text-transform: uppercase;
   color: rgb(160,160,160);
 }
 
 .marker-cluster div {
-  font: 14px "Calibri", Arial, Helvetica, sans-serif;
+  font: 14px "Calibri", 'Trebuchet MS', sans-serif;
 }
 
 /*popup styles*/
@@ -110,19 +110,19 @@
 .popup-full-address .popup-name {
   font-weight: bold;
   display: block;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 20px;
 }
 .leaflet-popup-content {
-  font-family: 'Calibri';
-  font-size: 14px;
+  font-family: 'Calibri', "Trebuchet MS", sans-serif;
+  font-size: 13px;
 }
 .popup-full-address {
   width: 120px;
   color: rgb(80,80,80);
 }
-.leaflet-popup-close-button { 
-  display: none; 
+.leaflet-popup-close-button {
+  display: none;
 }
 .popup-cat {
   clear: both;
@@ -134,6 +134,9 @@
 .popup-cat img {
   max-height: 12px;
   margin-right: 6px;
+}
+.popup-cat.no-cat img {
+  display: none;
 }
 .cat-icon {
   max-height: 13px;

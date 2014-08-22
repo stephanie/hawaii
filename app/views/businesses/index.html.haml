@@ -1,7 +1,7 @@
 %div#progress
   %div#progress-bar
   %div#progress-text
-    Loading map... 
+    Loading map...
 
 %div#map
 %div#navigation.menu-ui
@@ -13,12 +13,12 @@
     Marker
 
 :javascript
-  
+
   ////adapted from marker-clustering-realworld 50000 example
   var default_pos = [19.542915, -155.665857]
   var tiles = L.tileLayer('http://{s}.tiles.mapbox.com/v3/stephs829.j7hoj6gn/{z}/{x}/{y}.png', {
       maxZoom: 18,
-      attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',  
+      attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
     }),
     latlng = L.latLng(default_pos);
 
@@ -101,7 +101,10 @@
                 category_class = category = 'transportation';
               } else if (value >= 430 && value <= 440) {
                 category_class = category = 'travel';
-              } 
+              } else {
+                category = '';
+                category_class = 'no-cat';
+              }
             });
           }
           if (business["yelp_url"]) {
@@ -112,7 +115,7 @@
           marker = L.marker(L.latLng(business["latitude"], business["longitude"]), {title: title});
           marker.bindPopup(title);
           markerList.push(marker);
-        } 
+        }
         //else {
           //console.log(business.full_address);
         //}
