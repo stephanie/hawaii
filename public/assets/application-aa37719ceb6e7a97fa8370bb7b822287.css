@@ -1,0 +1,241 @@
+.leaflet-cluster-anim .leaflet-marker-icon, .leaflet-cluster-anim .leaflet-marker-shadow {
+	-webkit-transition: -webkit-transform 0.3s ease-out, opacity 0.3s ease-in;
+	-moz-transition: -moz-transform 0.3s ease-out, opacity 0.3s ease-in;
+	-o-transition: -o-transform 0.3s ease-out, opacity 0.3s ease-in;
+	transition: transform 0.3s ease-out, opacity 0.3s ease-in;
+	}
+.marker-cluster-small {
+	background-color: rgba(181, 226, 140, 0.6);
+	}
+.marker-cluster-small div {
+	background-color: rgba(110, 204, 57, 0.6);
+	}
+
+.marker-cluster-medium {
+	background-color: rgba(241, 211, 87, 0.6);
+	}
+.marker-cluster-medium div {
+	background-color: rgba(240, 194, 12, 0.6);
+	}
+
+.marker-cluster-large {
+	background-color: rgba(253, 156, 115, 0.6);
+	}
+.marker-cluster-large div {
+	background-color: rgba(241, 128, 23, 0.6);
+	}
+
+	/* IE 6-8 fallback colors */
+.leaflet-oldie .marker-cluster-small {
+	background-color: rgb(181, 226, 140);
+	}
+.leaflet-oldie .marker-cluster-small div {
+	background-color: rgb(110, 204, 57);
+	}
+
+.leaflet-oldie .marker-cluster-medium {
+	background-color: rgb(241, 211, 87);
+	}
+.leaflet-oldie .marker-cluster-medium div {
+	background-color: rgb(240, 194, 12);
+	}
+
+.leaflet-oldie .marker-cluster-large {
+	background-color: rgb(253, 156, 115);
+	}
+.leaflet-oldie .marker-cluster-large div {
+	background-color: rgb(241, 128, 23);
+}
+
+.marker-cluster {
+	background-clip: padding-box;
+	border-radius: 20px;
+	}
+.marker-cluster div {
+	width: 30px;
+	height: 30px;
+	margin-left: 5px;
+	margin-top: 5px;
+
+	text-align: center;
+	border-radius: 15px;
+	font: 12px "Helvetica Neue", Arial, Helvetica, sans-serif;
+	}
+.marker-cluster span {
+	line-height: 30px;
+	}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+
+
+
+ */
+
+#map {
+  width: 100%;
+  height: 800px;
+  border: 1px solid #ccc;
+}
+
+#progress {
+  display: block;
+  position: absolute;
+  z-index: 1000;
+  left: 150px;
+  bottom: 50px;
+  width: 500px;
+  height: 50px;
+  margin-top: -20px;
+  margin-left: -100px;
+  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 4px;
+  padding: 3px;
+ }
+
+ #progress-bar {
+  width: 0;
+  height: 100%;
+  background-color: #76A6FC;
+  border-radius: 4px;
+}
+
+.menu-ui {
+  background:#fff;
+  position:absolute;
+  top:20px;
+  right:20px;
+  z-index:1;
+  border-radius:4px;
+  width:120px;
+}
+
+.menu-ui a {
+  font-size: 20px;
+  color: rgb(160,160,160);
+  display: block;
+  margin: 0;
+  padding: 12px;
+  text-decoration: none;
+  border-bottom: 1px solid rgb(210,210,210);
+  text-align: center;
+  font-family: 'Calibri', 'Trebuchet MS', sans-serif;
+}
+
+.menu-ui a:first-child {
+  border-radius:4px 4px 0 0;
+}
+
+.menu-ui a:last-child {
+  border:none;
+  border-radius:0 0 4px 4px;
+}
+
+.menu-ui a:hover {
+  background:rgb(235,235,235);
+}
+
+#progress-text {
+  position: absolute;
+  left: 0px;
+  top: -45px;
+  font-size: 36px;
+  font-family: 'Calibri', 'Trebuchet MS', sans-serif;
+  text-transform: uppercase;
+  color: rgb(160,160,160);
+}
+
+.marker-cluster div {
+  font: 14px "Calibri", 'Trebuchet MS', sans-serif;
+}
+
+/*popup styles*/
+
+.leaflet-popup-content {
+  width: 225px;
+  height: 130px;
+  margin: 15px;
+}
+
+.popup-yelp-link img {
+  border: 3px solid #C41208;
+  max-height: 90px;
+}
+.popup-img {
+  float: right;
+  margin-bottom: 5px
+}
+.popup-full-address .popup-name {
+  font-weight: bold;
+  display: block;
+  font-size: 15px;
+  line-height: 20px;
+}
+.leaflet-popup-content {
+  font-family: 'Calibri', "Trebuchet MS", sans-serif;
+  font-size: 13px;
+}
+.popup-full-address {
+  width: 120px;
+  color: rgb(80,80,80);
+}
+.leaflet-popup-close-button {
+  display: none;
+}
+.popup-cat {
+  clear: both;
+  border-top: 1px solid rgb(210,210,210);
+  padding-top: 5px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+.popup-cat img {
+  max-height: 12px;
+  margin-right: 6px;
+}
+.popup-cat.no-cat img {
+  display: none;
+}
+.cat-icon {
+  max-height: 13px;
+  margin-right: 8px;
+  margin-top: 6px;
+}
+.automotive {
+  color: #01A58D;
+}
+.community-government {
+  color: #005FA1;
+}
+.healthcare {
+  color: #D72428;
+}
+.landmarks {
+  color: #7f8c8d;
+}
+.retail {
+  color: #DE5A29;
+}
+.businesses-services {
+  color: #154576;
+}
+.social {
+  color: #B995C5;
+}
+.sports-recreation {
+  color: #2ecc71;
+}
+.transportation {
+  color: #5E3C3B;
+}
+.travel {
+  color: #2CC36B;
+}
