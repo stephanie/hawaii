@@ -1,78 +1,83 @@
-%ul 
-  - @rows.each do |row|
-    %li 
-      = row["name"]
-      %ul
-        %li
-          Factual id: 
-          = row["factual_id"] 
-        %li
-          Address: 
-          = row["address"] 
-        %li
-          Extended address: 
-          = row["address_extended"] 
-        %li
-          Town/City: 
-          = row["locality"] 
-        %li
-          Region: 
-          = row["region"] 
-        %li
-          Postcode: 
-          = row["postcode"]
-        %li
-          Country: 
-          = row["country"]
-        %li
-          Neighborhood: 
-          = row["neighborhood"]
-        %li
-          Tel: 
-          = row["tel"]
-        %li
-          Fax: 
-          = row["fax"] 
-        %li
-          Website: 
-          = row["website"] 
-        %li
-          Latitude: 
-          = row["latitude"]
-        %li
-          Longitude: 
-          = row["longitude"]
-        %li
-          Hours: 
-          = row["hours_display"] 
-        %li
-          Chain ID:
-          = row["chain_id"]
-        %li
-          PO Box:
-          = row["po_box"]
-        %li
-          Category IDs:
-          = row["category_ids"]
-        %li
-          Post Town:
-          = row["post_town"]
-        %li
-          Email: 
-          = row["email"]
-        %li
-          Admin Region: 
-          = row["admin_region"] 
-        %li
-          Category Labels: 
-          = row["category_labels"]
-        %li
-          Hours (JSON): 
-          = row["hours"] 
-        %li
-          Chain name: 
-          = row["chain_name"] 
+/ %ul 
+/   - @rows.each do |row|
+/     %li 
+/       = row["name"]
+/       %ul
+/         %li
+/           Factual id: 
+/           = row["factual_id"] 
+/         %li
+/           Address: 
+/           = row["address"] 
+/         %li
+/           Extended address: 
+/           = row["address_extended"] 
+/         %li
+/           Town/City: 
+/           = row["locality"] 
+/         %li
+/           Region: 
+/           = row["region"] 
+/         %li
+/           Postcode: 
+/           = row["postcode"]
+/         %li
+/           Country: 
+/           = row["country"]
+/         %li
+/           Neighborhood: 
+/           = row["neighborhood"]
+/         %li
+/           Tel: 
+/           = row["tel"]
+/         %li
+/           Fax: 
+/           = row["fax"] 
+/         %li
+/           Website: 
+/           = row["website"] 
+/         %li
+/           Latitude: 
+/           = row["latitude"]
+/         %li
+/           Longitude: 
+/           = row["longitude"]
+/         %li
+/           Hours: 
+/           = row["hours_display"] 
+/         %li
+/           Chain ID:
+/           = row["chain_id"]
+/         %li
+/           PO Box:
+/           = row["po_box"]
+/         %li
+/           Category IDs:
+/           = row["category_ids"]
+/         %li
+/           Post Town:
+/           = row["post_town"]
+/         %li
+/           Email: 
+/           = row["email"]
+/         %li
+/           Admin Region: 
+/           = row["admin_region"] 
+/         %li
+/           Category Labels: 
+/           = row["category_labels"]
+/         %li
+/           Hours (JSON): 
+/           = row["hours"] 
+/         %li
+/           Chain name: 
+/           = row["chain_name"] 
 
 / = @yelp
 
 / = @locality_count
+
+- @categories.each do |category|
+  = category["category_id"]
+  = category["en"]
+

@@ -14,7 +14,7 @@ class Business < ActiveRecord::Base
 
     Business::LOCATIONS[start..count].each do |locality|
       puts "Locality: #{locality}"
-      (1..460).each do |category_id| #Factual lists 460 categories with IDs starting from 1
+      (2..460).each do |category_id| #Factual lists 460 categories with IDs starting from 2
         puts "Category Id: #{category_id}"
         if include_categories
           count = factual.facets("places-us").select("region").filters("$and" => [{"category_ids" => {"$eq" => category_id}}, "locality" => "#{locality}"]).columns

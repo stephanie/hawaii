@@ -10,6 +10,7 @@ Hawaii::Application.routes.draw do
   end
 
   resources :businesses, only: [ :index, :create, :update ]
+  resources :categories, only: [ :index, :create, :update ]
   get 'sample_data' => 'businesses#sample_data', as: :sample_data
 
   root 'businesses#index'
