@@ -14,7 +14,7 @@ class Business < ActiveRecord::Base
 
     Business::LOCATIONS[start..count].each do |locality|
       puts "Locality: #{locality}"
-      (2..460).each do |category_id| #Factual lists 460 categories with IDs starting from 1
+      (1..460).each do |category_id| #Factual lists 460 categories with IDs starting from 1
         puts "Category Id: #{category_id}"
         if include_categories
           count = factual.facets("places-us").select("region").filters("$and" => [{"category_ids" => {"$eq" => category_id}}, "locality" => "#{locality}"]).columns
@@ -39,7 +39,7 @@ class Business < ActiveRecord::Base
             rows = factual.table("places-us").filters("$and" => filters).offset(i*limit).limit(limit)
             rows.each do |row|
               business = Business.find_or_initialize_by_factual_id(row['factual_id'])
-              ['name','address','address_extended','locality','postcode','latitude','longitude'].each do |key|
+              ['name','address','address_extended','locality','postcode','latitude','longitude','region','country','tel','fax','website','hours_display','po_box','post_town','admin_region'].each do |key|
                 business.send(key+'=', row[key])
               end
               if !row['category_ids'].blank?
@@ -56,13 +56,6 @@ class Business < ActiveRecord::Base
         end
       end
     end
-  end
-
-  def add_category_names
-    @businesses = Businesses.all
-    @businesses.each do |business|
-      
-    end 
   end
 
 end
