@@ -16,21 +16,63 @@
           Town/City: 
           = row["locality"] 
         %li
+          Region: 
+          = row["region"] 
+        %li
           Postcode: 
           = row["postcode"]
         %li
-          Category: 
-          = row["category_labels"] 
+          Country: 
+          = row["country"]
+        %li
+          Neighborhood: 
+          = row["neighborhood"]
+        %li
+          Tel: 
+          = row["tel"]
+        %li
+          Fax: 
+          = row["fax"] 
+        %li
+          Website: 
+          = row["website"] 
         %li
           Latitude: 
           = row["latitude"]
         %li
           Longitude: 
-          = row["longitude"] 
+          = row["longitude"]
         %li
-          Category ID:
+          Hours: 
+          = row["hours_display"] 
+        %li
+          Chain ID:
+          = row["chain_id"]
+        %li
+          PO Box:
+          = row["po_box"]
+        %li
+          Category IDs:
           = row["category_ids"]
+        %li
+          Post Town:
+          = row["post_town"]
+        %li
+          Email: 
+          = row["email"]
+        %li
+          Admin Region: 
+          = row["admin_region"] 
+        %li
+          Category Labels: 
+          = row["category_labels"]
+        %li
+          Hours (JSON): 
+          = row["hours"] 
+        %li
+          Chain name: 
+          = row["chain_name"] 
 
-= @yelp
+/ = @yelp
 
-= @locality_count
+/ = @locality_count
