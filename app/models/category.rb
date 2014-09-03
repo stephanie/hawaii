@@ -10,6 +10,9 @@ class Category < ActiveRecord::Base
       factual_categories.each do |factual_category|
         category = Category.find_or_initialize_by_id(factual_category['category_id'])
         category.update(:name => factual_category['en'])
+        puts 'Updating ' + category
+        puts factual_category['category_id']
+        puts factual_category['en']
       end
 
     end

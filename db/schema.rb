@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140902124748) do
+ActiveRecord::Schema.define(version: 20140902142323) do
 
   create_table "businesses", force: true do |t|
     t.string   "name"
@@ -31,10 +31,12 @@ ActiveRecord::Schema.define(version: 20140902124748) do
     t.string   "tel"
     t.string   "fax"
     t.string   "website"
-    t.string   "hours_display"
+    t.text     "hours_display"
     t.string   "po_box"
     t.string   "post_town"
     t.string   "admin_region"
+    t.string   "chain_name"
+    t.string   "chain_id"
   end
 
   create_table "businesses_categories", id: false, force: true do |t|

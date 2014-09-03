@@ -77,7 +77,9 @@
 
 / = @locality_count
 
-- @categories.each do |category|
-  = category["category_id"]
-  = category["en"]
+/ - @categories.each do |category|
+/   = category["category_id"]
+/   = category["en"]
+
+= @localities
 

@@ -4,8 +4,14 @@ namespace :hawaii do
 
       require_relative '../../app/workers/factual_worker'
 
-      Business.download_factual(0,21,false)
-      Business.download_factual(22,49,false)
+      # #localities with more than 500 businesses
+      # Business.download_factual(0,21,true)
+      # #localities with less than 500 businesses
+      # Business.download_factual(22,49,false)
+
+      #retail categories
+      # Business.download_factual(0,49,true,123,176)
+      Business.download_factual_retail
 
       # FactualWorker.perform_async(0,21,true)  #UNCOMMENT TO SET UP BACKGROUND TASKS & QUEUE IN SIDEKIQ
       # FactualWorker.perform_async(22,49,false)  #UNCOMMENT TO SET UP BACKGROUND TASKS & QUEUE IN SIDEKIQ
