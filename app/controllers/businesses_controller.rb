@@ -42,7 +42,7 @@ class BusinessesController < ApplicationController
   private
 
   def business_params
-    params.require(:business).permit(:name, :factual_id, :address, :address_extended, :locality, :postcode, :latitude, :longitude, :region, :country, :tel, :fax, :website, :hours_display, :po_box, :post_town, :admin_region, :chain_id, :chain_name)
+    params.require(:business).permit(:name, :factual_id, :address, :address_extended, :locality, :postcode, :latitude, :longitude, :region, :country, :tel, :fax, :website, :email, :hours_display, :po_box, :post_town, :admin_region, :chain_id, :chain_name)
   end
 
 end

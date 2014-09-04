@@ -39,7 +39,7 @@ class Business < ActiveRecord::Base
             rows = factual.table("places-us").filters("$and" => filters).offset(i*limit).limit(limit)
             rows.each do |row|
               business = Business.find_or_initialize_by_factual_id(row['factual_id'])
-              ['name','address','address_extended','locality','postcode','latitude','longitude','region','country','tel','fax','website','hours_display','po_box','post_town','admin_region','chain_id','chain_name'].each do |key|
+              ['name','address','address_extended','locality','postcode','latitude','longitude','region','country','tel','fax','website','email','hours_display','po_box','post_town','admin_region','chain_id','chain_name'].each do |key|
                 business.send(key+'=', row[key])
               end
               if !row['category_ids'].blank?
@@ -80,7 +80,7 @@ class Business < ActiveRecord::Base
           rows = factual.table("places-us").filters("$and" => [{"category_ids" => {"$eq" => category_id}}, "region" => "HI"]).offset(i*limit).limit(limit)
           rows.each do |row|
             business = Business.find_or_initialize_by_factual_id(row['factual_id'])
-            ['name','address','address_extended','locality','postcode','latitude','longitude','region','country','tel','fax','website','hours_display','po_box','post_town','admin_region','chain_id','chain_name'].each do |key|
+            ['name','address','address_extended','locality','postcode','latitude','longitude','region','country','tel','fax','website','email','hours_display','po_box','post_town','admin_region','chain_id','chain_name'].each do |key|
               business.send(key+'=', row[key])
             end
             if !row['category_ids'].blank?
